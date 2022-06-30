@@ -13,6 +13,8 @@ board = [
 
 
 # Function that prints the board.
+# Can use numpy grid matrix too
+
 def print_board(bo):
     for i in range(len(bo)):
         if i % 3 == 0 and i != 0:
@@ -35,7 +37,7 @@ def is_available(num):
     else:
         return False
 
-
+# The constraints of the Sudoku Game (Rules)
 def validate_board(row, column, num, bo):
     #Row
     for i in range(len(bo[0])):
@@ -56,6 +58,7 @@ def validate_board(row, column, num, bo):
     return True
 
 
+# The choices 1-9 which can be used in the Grid.
 def number_validator(bo, row, column):
     for num in range(1, 10):
         if validate_board(bo=bo, row=row, column=column, num=num):
@@ -64,6 +67,7 @@ def number_validator(bo, row, column):
             bo[row][column] = 0
 
 
+# Uses the Backtracking Algorithm (Recursion) to solve the board.
 def solver(bo):
     for row in range(len(bo)):
         for column in range(len(bo[0])):
